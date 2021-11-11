@@ -1,5 +1,5 @@
 #include "lib.h"
 
 int answer() {
-  return 42;
+  return ANSWER;
 }
