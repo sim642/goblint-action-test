@@ -22,12 +22,14 @@ jobs:
       - run: cmake -B build
         working-directory: cmake-project
       - run: ls -R
-      - # uses: goblint/action@master
-        uses: docker://ghcr.io/goblint/analyzer:nightly
+      - uses: docker://ghcr.io/goblint/analyzer:nightly
         with:
-          # file: cmake-project/build
           entrypoint: ls
           args: '-R'
+      - uses: docker://ghcr.io/goblint/analyzer:nightly
+        with:
+          entrypoint: goblint
+          args: cmake-project/build/compile_commands.json
       - uses: goblint/action@master
         with:
           file: cmake-project/build/compile_commands.json
