@@ -28,7 +28,7 @@ jobs:
           args: '-R'
       - uses: docker://ghcr.io/goblint/analyzer:nightly
         with:
-          entrypoint: goblint
+          entrypoint: /opt/goblint/analyzer/bin/goblint
           args: cmake-project/build/compile_commands.json
       - uses: goblint/action@master
         with:
