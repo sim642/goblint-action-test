@@ -24,7 +24,9 @@ jobs:
       - run: ls -R
       - uses: goblint/action@master
         with:
-          file: cmake-project/build
+          # file: cmake-project/build
+          entrypoint: ls
+          args: '-R'
       - uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: goblint.sarif
