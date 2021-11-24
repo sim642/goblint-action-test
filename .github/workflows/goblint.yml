@@ -28,6 +28,7 @@ jobs:
         with:
           entrypoint: ls
           args: '-R'
+      - run: cat ./cmake-project/build/compile_commands.json
       - uses: docker://ghcr.io/goblint/analyzer:nightly
         with:
           entrypoint: /opt/goblint/analyzer/bin/goblint
