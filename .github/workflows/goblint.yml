@@ -31,7 +31,7 @@ jobs:
       - uses: docker://ghcr.io/goblint/analyzer:nightly
         with:
           entrypoint: /opt/goblint/analyzer/bin/goblint
-          args: -v ./cmake-project/build/compile_commands.json
+          args: -v ./cmake-project/build/compile_commands.json --set exp.compdb.original-path ${{ github.workspace }}/cmake-project/build/compile_commands.json
       - uses: goblint/action@master
         with:
           file: cmake-project/build/compile_commands.json
