@@ -8,6 +8,7 @@ jobs:
     steps:
       - uses: myrotvorets/set-commit-status-action@1.1.4
         with:
+          status: success
           context: Custom context
           description: Custom description
           targetUrl: https://sws.cs.ut.ee/
