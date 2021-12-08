@@ -24,6 +24,9 @@ jobs:
           repository: goblint/analyzer
           path: analyzer
 
+      - name: Remove old switch
+        run: rm -rf _opam
+
       - name: Set up OCaml ${{ matrix.ocaml-compiler }}
         env:
           # otherwise setup-ocaml pins non-locked dependencies
