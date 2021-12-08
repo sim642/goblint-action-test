@@ -3,6 +3,11 @@ name: bench
 on:
   push:
 
+env:
+  RESULTS_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+  RESULTS_URL: https://goblint.cs.ut.ee/actions-results
+
+
 jobs:
   bench:
     strategy:
@@ -55,17 +60,14 @@ jobs:
         run: ./update_bench_incremental.rb 60 index/defs/interactive.yaml index/sets/synthetic.yaml index/sets/posix.yaml
         # run: ./update_bench_incremental.rb 60 index/defs/interactive.yaml index/sets/synthetic.yaml
 
-      - id: checkout-sha
-        run: |
-          echo "::set-output name=analyzer::$(git --git-dir ./analyzer/.git rev-parse HEAD)"
-          echo "::set-output name=bench::$(git --git-dir ./bench/.git rev-parse HEAD)"
-
       - name: Copy results for web
-        run: cp -a ./bench/bench_result /mnt/goblint-svcomp/actions-results/${{ steps.checkout-sha.outputs.analyzer }}-${{ steps.checkout-sha.outputs.analyzer }}
+        run: cp -a ./bench/bench_result /mnt/goblint-svcomp/actions-results/${{ env.results_id }}
+
+      - run: echo ${{ env.results_url }}/${{ env.results_id }}
 
       - uses: myrotvorets/set-commit-status-action@1.1.4
         with:
           status: success
           context: bench results
           # description: Custom description
-          targetUrl: https://goblint.cs.ut.ee/actions-results/${{ steps.checkout-sha.outputs.analyzer }}-${{ steps.checkout-sha.outputs.analyzer }}
+          targetUrl: ${{ env.results_url }}/${{ env.results_id }}
