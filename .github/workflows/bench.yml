@@ -49,8 +49,8 @@ jobs:
 
       - name: Run interactive benchmarks
         working-directory: bench
-        # run: ./update_bench_incremental.rb 60 index/defs/interactive.yaml index/sets/synthetic.yaml index/sets/posix.yaml
-        run: ./update_bench_incremental.rb 60 index/defs/interactive.yaml index/sets/synthetic.yaml
+        run: ./update_bench_incremental.rb 60 index/defs/interactive.yaml index/sets/synthetic.yaml index/sets/posix.yaml
+        # run: ./update_bench_incremental.rb 60 index/defs/interactive.yaml index/sets/synthetic.yaml
 
       - id: checkout-sha
         run: |
