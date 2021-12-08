@@ -61,13 +61,13 @@ jobs:
         # run: ./update_bench_incremental.rb 60 index/defs/interactive.yaml index/sets/synthetic.yaml
 
       - name: Copy results for web
-        run: cp -a ./bench/bench_result /mnt/goblint-svcomp/actions-results/${{ env.results_id }}
+        run: cp -a ./bench/bench_result /mnt/goblint-svcomp/actions-results/${{ env.RESULTS_ID }}
 
-      - run: echo ${{ env.results_url }}/${{ env.results_id }}
+      - run: echo ${{ env.RESULTS_URL }}/${{ env.RESULTS_ID }}
 
       - uses: myrotvorets/set-commit-status-action@1.1.4
         with:
           status: success
           context: bench results
           # description: Custom description
-          targetUrl: ${{ env.results_url }}/${{ env.results_id }}
+          targetUrl: ${{ env.RESULTS_URL }}/${{ env.RESULTS_ID }}
